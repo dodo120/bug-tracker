@@ -129,7 +129,7 @@ describe('BugTrack - Tests E2E', () => {
           description: 'Test des stats'
         });
 
-        cy.get('#stat-total').should('contain', initial + 1);
+        cy.get('#stat-total').scrollIntoView().should('contain', initial + 1);
       });
     });
 
@@ -325,7 +325,7 @@ describe('BugTrack - Tests E2E', () => {
     });
 
     it('devrait rechercher par titre', () => {
-      cy.searchBugs('connexion');
+      cy.searchBugs('Cypress');
 
       cy.get('[data-testid="bug-card"]').should('have.length.at.least', 1);
       cy.get('[data-testid="bug-title"]').first().should('contain.text', 'connexion', { matchCase: false });
