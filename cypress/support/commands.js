@@ -111,7 +111,7 @@ Cypress.Commands.add('filterBugs', (filterType, value) => {
 Cypress.Commands.add('searchBugs', (searchTerm) => {
   cy.get('[data-testid="filter-search"]').clear().type(searchTerm);
   // Attendre le debounce
-  cy.wait(400);
+  cy.wait(1000);
 });
 
 /**
