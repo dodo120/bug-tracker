@@ -328,7 +328,7 @@ describe('BugTrack - Tests E2E', () => {
       cy.searchBugs('Cypress');
 
       cy.get('[data-testid="bug-card"]').should('have.length.at.least', 1);
-      cy.get('[data-testid="bug-title"]').first().should('contain.text', 'connexion', { matchCase: false });
+      cy.get('[data-testid="bug-title"]').first().should('contain.text', 'Cypress', { matchCase: false });
     });
 
     it('devrait rechercher par ID', () => {
