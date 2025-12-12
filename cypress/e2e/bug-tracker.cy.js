@@ -433,7 +433,7 @@ describe('BugTrack - Tests E2E', () => {
       cy.get('[data-testid="bug-card"]').first().then(($card) => { 
         const title = $card.find('[data-testid="bug-title"]').text(); 
         const bugId = $card.attr('data-id'); 
-        cy.get('[data-id="${bugId}"] [data-testid="edit-btn"]').click({ force: true }); 
+        cy.get(`[data-id="${bugId}"] [data-testid="edit-btn"]`).click({ force: true }); 
         cy.get('input[data-testid="bug-title"]').should('have.value', title); 
       }); 
     });
