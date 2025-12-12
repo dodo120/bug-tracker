@@ -21,7 +21,7 @@ Cypress.Commands.add('createBug', (bugData) => {
   cy.get('[data-testid="new-bug-btn"]').click();
   cy.get('[data-testid="bug-modal"]').should('be.visible');
 
-  cy.get('[data-testid="bug-title"]').clear().type(title);
+  cy.get('input[data-testid="bug-title"]').clear().type(title);
   cy.get('[data-testid="bug-priority"]').select(priority);
   cy.get('[data-testid="bug-severity"]').select(severity);
   cy.get('[data-testid="bug-description"]').clear().type(description);
