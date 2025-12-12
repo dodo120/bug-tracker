@@ -676,5 +676,3 @@ describe('BugTrack - Tests E2E', () => {
     });
 
   });
-
-});
