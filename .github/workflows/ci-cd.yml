@@ -41,7 +41,7 @@ jobs:
       # TODO: Uploader les artefacts (vidéos/screenshots) en cas d'échec
         - name: Upload Cypress videos and screenshots on failure
           if: failure()
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v4
           with:
             name: cypress-artifacts
             path: |
