@@ -54,7 +54,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: test  # Ce job dépend du succès des tests
-    if: github.ref == 'refs/heads/main'  # Seulement sur main
+    if: github.ref == 'refs/heads/master'  # Seulement sur main
 
     steps:
       # TODO: Checkout du code
