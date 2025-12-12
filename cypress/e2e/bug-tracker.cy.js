@@ -429,15 +429,14 @@ describe('BugTrack - Tests E2E', () => {
       });
     });
 
-    it('devrait pré-remplir les champs avec les données existantes', () => {
-  cy.get('[data-testid="bug-card"]').first().within(() => {
-    cy.get('[data-testid="bug-title"]').invoke('text').then((title) => {
-
-      cy.get('[data-testid="edit-btn"]').click({ force: true });
-
-      cy.get('input[data-testid="bug-title"]').should('have.value', title.trim());
+    it('devrait pré-remplir les champs avec les données existantes', () => { 
+      cy.get('[data-testid="bug-card"]').first().then(($card) => { 
+        const title = $card.find('[data-testid="bug-title"]').text(); 
+        const bugId = $card.attr('data-id'); 
+        cy.get('[data-id="${bugId}"] [data-testid="edit-btn"]').click({ force: true }); 
+        cy.get('input[data-testid="bug-title"]').should('have.value', title); 
+      }); 
     });
-  });
 });
 
 
@@ -446,7 +445,7 @@ describe('BugTrack - Tests E2E', () => {
         const bugId = $card.attr('data-id');
 
         cy.get(`[data-id="${bugId}"] [data-testid="edit-btn"]`).click({ force: true });
-        cy.get('[data-testid="bug-title"][@id="bug-title"]').clear().type('Titre modifié par Cypress');
+        cy.get('input[data-testid="bug-title"]').clear().type('Titre modifié par Cypress');
         cy.get('[data-testid="submit-btn"]').click();
 
         cy.get('[data-testid="toast"]').should('contain', 'mis à jour');

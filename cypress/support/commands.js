@@ -18,6 +18,8 @@ Cypress.Commands.add('createBug', (bugData) => {
     actual = ''
   } = bugData;
 
+  cy.intercept('POST', '/api/bugs').as('createBug');
+
   cy.get('[data-testid="new-bug-btn"]').click();
   cy.get('[data-testid="bug-modal"]').should('be.visible');
 
@@ -27,7 +29,7 @@ Cypress.Commands.add('createBug', (bugData) => {
   cy.get('[data-testid="bug-description"]').clear().type(description);
 
   if (assignee) {
-    cy.get('[data-testid="bug-assignee"]').select(assignee);
+    cy.get('select[data-testid="bug-assignee"]').select(assignee);
   }
 
   if (environment) {
@@ -47,6 +49,9 @@ Cypress.Commands.add('createBug', (bugData) => {
   }
 
   cy.get('[data-testid="submit-btn"]').click();
+
+  cy.wait('@createBug').its('response.statusCode').should('eq', 201);
+
   cy.get('[data-testid="bug-modal"]').should('not.be.visible');
 });
 
